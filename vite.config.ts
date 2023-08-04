@@ -4,6 +4,7 @@ import dts from 'vite-plugin-dts';
 import * as path from 'path';
 import tsConfigPaths from 'vite-tsconfig-paths'
 import EsLint from 'vite-plugin-linter'
+import packageJson from "./package.json";
 
 const {EsLinter, linterPlugin} = EsLint
 
@@ -30,20 +31,7 @@ export default defineConfig(configEnv => ({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        "react",
-        "react-dom",
-        "styled-components",
-        '@mui/material',
-        '@mui/lab',
-        '@mui/icons-material',
-        '@mui/types',
-        '@mui/x-date-pickers',
-        '@emotion/styled',
-        '@emotion/react',
-        'swr',
-        'deepmerge-ts',
-      ],
+      external: Object.keys(packageJson.peerDependencies).map(k => k),
       input: path.resolve(__dirname, 'src/index.ts'),
       output: {
         globals: {

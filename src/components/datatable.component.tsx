@@ -81,7 +81,7 @@ export const DataTable: React.ForwardRefExoticComponent<
       messages: customMessages,
       customSubHeaderComponent
     } = props;
-    const messages: DataTableMessages = deepmerge(defaultMessages, customMessages) as DataTableMessages;
+    const messages: DataTableMessages = typeof customMessages != 'undefined' ? deepmerge(defaultMessages, customMessages) as DataTableMessages : defaultMessages;
     const [currentView, setCurrentView] = React.useState<TableView | undefined>();
     const [search, setSearch] = React.useState<string | undefined>(
       fetchDataOptions?.search || undefined,

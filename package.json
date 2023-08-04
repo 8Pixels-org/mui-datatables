@@ -1,6 +1,6 @@
 {
   "name": "@8pixels/mui-datatables",
-  "version": "2.2.0",
+  "version": "2.2.3",
   "homepage": "./",
   "private": false,
   "type": "module",
@@ -27,16 +27,7 @@
   "author": "Niek Poorthuis",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.3",
-    "@mui/lab": "^5.0.0-alpha.138",
-    "@mui/material": "^5.14.3",
-    "@mui/x-date-pickers": "^6.11.0",
-    "deepmerge-ts": "^5.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "swr": "^2.2.0"
+    "deepmerge-ts": "^5.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.3",
@@ -60,6 +51,17 @@
     "vite-plugin-dts": "^3.5.0",
     "vite-plugin-linter": "^2.0.2",
     "vite-tsconfig-paths": "^4.2.0"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/lab": "^5.0.0-alpha.138",
+    "@mui/material": "^5.14.3",
+    "@mui/x-date-pickers": "^6.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "swr": "^2.2.0"
   },
   "bugs": {
     "url": "https://github.com/8Pixels-org/mui-datatables/issues"
