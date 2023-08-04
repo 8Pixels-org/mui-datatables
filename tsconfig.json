@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    // Specifies the root files and the compiler options required
+    // to compile the TypeScript project.
+    // Learn more: https://www.typescriptlang.org/tsconfig
+    "target": "es6",
+    "sourceMap": true,
+    "incremental": false,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "declaration": true,
+    "declarationDir": "types",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx"
+  ]
+}
