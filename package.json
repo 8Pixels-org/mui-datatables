@@ -1,15 +1,27 @@
 {
   "name": "@8pixels/mui-datatables",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
   "homepage": "./",
   "private": false,
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-rollup": "rollup -c --bundleConfigAsCjs",
+    "build": "tsc && vite build",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
+    "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8Pixels-org/mui-datatables.git"
   },
   "keywords": [],
   "author": "Niek Poorthuis",
@@ -31,16 +43,26 @@
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser": "^0.4.3",
     "@rollup/plugin-typescript": "^11.1.2",
+    "@types/node": "^20.4.7",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
+    "@vitejs/plugin-react": "^4.0.4",
     "eslint": "^8.46.0",
     "eslint-plugin-react": "^7.33.1",
     "rollup": "^3.27.1",
     "rollup-plugin-dts": "^5.3.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tslib": "^2.6.1",
-    "typescript": "^5.1.6"
-  }
+    "typescript": "^5.1.6",
+    "vite": "^4.4.8",
+    "vite-plugin-dts": "^3.5.0",
+    "vite-plugin-linter": "^2.0.2",
+    "vite-tsconfig-paths": "^4.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/8Pixels-org/mui-datatables/issues"
+  },
+  "description": ""
 }

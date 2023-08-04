@@ -62,6 +62,8 @@ export interface TableView {
   filters?: FilterOption[];
 }
 
+export type CustomSubHeaderComponent = (fetchDataOptions: FetchDataOptions, activeView?: TableView) => React.ReactNode
+
 export interface DataTableProps<T> {
   onClickRow?: (row: T) => void;
   dataUrl: string;
@@ -90,7 +92,12 @@ export interface DataTableProps<T> {
   /**
    * Messages can be overwritten
    */
-  messages?: Partial<DataTableMessages>
+  messages?: Partial<DataTableMessages>;
+  /**
+   * Render a custom component below the header
+   * @param view
+   */
+  customSubHeaderComponent?: CustomSubHeaderComponent;
 }
 
 /**
@@ -115,9 +122,6 @@ export interface RowProps {
     row: Record<any, any>,
   ) => React.ReactNode;
   expandable?: boolean;
-  /**
-   * Messages can be overwritten
-   */
   messages: DataTableMessages
 }
 
@@ -133,10 +137,8 @@ export interface DataTableToolbarProps {
   onSearchChange: (search?: string) => void;
   isLoading: boolean;
   disableSearch?: boolean;
-  /**
-   * Messages can be overwritten
-   */
   messages: DataTableMessages
+  customSubHeaderComponent?: () => React.ReactNode;
 }
 
 export interface DataTableHeaderProps {

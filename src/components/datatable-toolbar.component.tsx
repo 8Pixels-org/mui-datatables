@@ -37,60 +37,64 @@ export function DataTableToolbar(props: DataTableToolbarProps) {
     search,
     isLoading,
     disableSearch,
-    messages
+    messages,
+    customSubHeaderComponent
   } = props;
 
   const [searching, setSearching] = useState(false);
 
   return (
-    <Toolbar>
-      {searching ? (
-        <Search messages={messages} search={search} onSearchChange={onSearchChange}/>
-      ) : (
-        <>
-          {views.length > 0 && (
-            <Views
-              messages={messages}
-              views={views}
-              currentView={currentView}
-              onChangeView={onChangeView}
-            />
-          )}
-        </>
-      )}
+    <>
+      <Toolbar>
+        {searching ? (
+          <Search messages={messages} search={search} onSearchChange={onSearchChange}/>
+        ) : (
+          <>
+            {views.length > 0 && (
+              <Views
+                messages={messages}
+                views={views}
+                currentView={currentView}
+                onChangeView={onChangeView}
+              />
+            )}
+          </>
+        )}
 
-      <Box sx={{flexGrow: 1}}/>
-      {searching ? (
-        <LoadingButton
-          variant="contained"
-          loading={isLoading}
-          sx={{ml: 1}}
-          size="small"
-          color="primary"
-          onClick={() => setSearching(false)}
-        >
-          {messages.toolbar.search.cancel}
-        </LoadingButton>
-      ) : (
-        <>
-          {isLoading && <CircularProgress size={20}/>}
-          {!disableSearch && (
-            <IconButton onClick={() => setSearching(true)}>
-              <SearchIcon/>
-            </IconButton>
-          )}
-        </>
-      )}
-      {!!sortFields && sortFields.length > 0 && (
-        <Sort
-          messages={messages}
-          onSortChange={onSortChange}
-          sortFields={sortFields}
-          sortField={sortField}
-          sortDir={sortDir}
-        />
-      )}
-    </Toolbar>
+        <Box sx={{flexGrow: 1}}/>
+        {searching ? (
+          <LoadingButton
+            variant="contained"
+            loading={isLoading}
+            sx={{ml: 1}}
+            size="small"
+            color="primary"
+            onClick={() => setSearching(false)}
+          >
+            {messages.toolbar.search.cancel}
+          </LoadingButton>
+        ) : (
+          <>
+            {isLoading && <CircularProgress size={20}/>}
+            {!disableSearch && (
+              <IconButton onClick={() => setSearching(true)}>
+                <SearchIcon/>
+              </IconButton>
+            )}
+          </>
+        )}
+        {!!sortFields && sortFields.length > 0 && (
+          <Sort
+            messages={messages}
+            onSortChange={onSortChange}
+            sortFields={sortFields}
+            sortField={sortField}
+            sortDir={sortDir}
+          />
+        )}
+      </Toolbar>
+      {!!customSubHeaderComponent && customSubHeaderComponent()}
+    </>
   );
 }
 

@@ -79,6 +79,7 @@ export const DataTable: React.ForwardRefExoticComponent<
       expandable,
       ExpandComponent,
       messages: customMessages,
+      customSubHeaderComponent
     } = props;
     const messages: DataTableMessages = deepmerge(defaultMessages, customMessages) as DataTableMessages;
     const [currentView, setCurrentView] = useState<TableView | undefined>();
@@ -102,6 +103,8 @@ export const DataTable: React.ForwardRefExoticComponent<
     //   }&sort_dir=${sort.dir}&view=${currentView?.label || "all"}`;
     // }, [page, rowsPerPage, sort, currentView]);
     const key = dataUrl;
+
+    const filters = currentView?.filters || [];
 
     const {data, error, isLoading, isValidating, mutate} = useSWR(key, () =>
       onFetchData({
@@ -150,7 +153,6 @@ export const DataTable: React.ForwardRefExoticComponent<
     }));
 
     const isExpandable = (expandable && !!ExpandComponent) || false;
-
     const colCount = isExpandable ? columns.length + 1 : columns.length;
     return (
       <>
@@ -168,6 +170,13 @@ export const DataTable: React.ForwardRefExoticComponent<
             onSearchChange={onSearchChange}
             search={search}
             disableSearch={disableSearch}
+            customSubHeaderComponent={customSubHeaderComponent ? () => customSubHeaderComponent({
+              page,
+              sort,
+              filters,
+              search,
+              rows_per_page: rowsPerPage
+            }, currentView) : () => <></>}
           />
           <Table aria-labelledby="table title" aria-label="data table">
             <DataTableHeader
