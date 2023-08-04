@@ -19,7 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
-import React, {useState} from "react";
+import React from "react";
 import {useDebounceEffect} from "../hooks/useDebounceEffect";
 import {DataTableMessages, DataTableToolbarProps, SortField, TableView} from "./datatable.types";
 
@@ -41,7 +41,7 @@ export function DataTableToolbar(props: DataTableToolbarProps) {
     customSubHeaderComponent
   } = props;
 
-  const [searching, setSearching] = useState(false);
+  const [searching, setSearching] = React.useState(false);
 
   return (
     <>
@@ -106,7 +106,7 @@ interface SearchProps {
 
 function Search(props: SearchProps) {
   const {onSearchChange, search: defaultSearch, messages} = props;
-  const [search, setSearch] = useState<string | undefined>(defaultSearch);
+  const [search, setSearch] = React.useState<string | undefined>(defaultSearch);
 
   useDebounceEffect(
     () => {

@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import React from "react";
 
 /**
  * React useEffect hook with debouncing implemented
@@ -7,7 +7,7 @@ import {useEffect} from "react";
  * @param delay
  */
 export function useDebounceEffect(effect: () => void, deps: any, delay: number | undefined) {
-  useEffect(() => {
+  React.useEffect(() => {
     const handler = setTimeout(() => effect(), delay);
 
     return () => clearTimeout(handler);

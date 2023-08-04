@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeHandle, useState} from 'react';
+import React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
@@ -64,7 +64,7 @@ export const DataTable: React.ForwardRefExoticComponent<
   React.PropsWithoutRef<DataTableProps<any>> &
   React.RefAttributes<DataTableRefHandle>
 > =
-  forwardRef((props: DataTableProps<any>, ref) => {
+  React.forwardRef((props: DataTableProps<any>, ref) => {
     const {
       onClickRow,
       dataUrl,
@@ -82,20 +82,20 @@ export const DataTable: React.ForwardRefExoticComponent<
       customSubHeaderComponent
     } = props;
     const messages: DataTableMessages = deepmerge(defaultMessages, customMessages) as DataTableMessages;
-    const [currentView, setCurrentView] = useState<TableView | undefined>();
-    const [search, setSearch] = useState<string | undefined>(
+    const [currentView, setCurrentView] = React.useState<TableView | undefined>();
+    const [search, setSearch] = React.useState<string | undefined>(
       fetchDataOptions?.search || undefined,
     );
-    const [page, setPage] = useState(fetchDataOptions?.page || 1);
-    const [rowsPerPage, setRowsPerPage] = useState(
+    const [page, setPage] = React.useState(fetchDataOptions?.page || 1);
+    const [rowsPerPage, setRowsPerPage] = React.useState(
       fetchDataOptions?.rows_per_page || rowsPerPageOptions[0],
     );
 
-    const [sort, setSort] = useState<{ dir: 'asc' | 'desc'; field: string }>({
+    const [sort, setSort] = React.useState<{ dir: 'asc' | 'desc'; field: string }>({
       dir: fetchDataOptions?.sort?.dir || 'desc',
       field: fetchDataOptions?.sort?.field || 'created_at',
     });
-    const [totalRows, setTotalRows] = useState<number>(0);
+    const [totalRows, setTotalRows] = React.useState<number>(0);
 
     // const key = useMemo(() => {
     //   return `${dataUrl}?page=${page}&rows_per_page=${rowsPerPage}&sort_field=${
@@ -148,7 +148,7 @@ export const DataTable: React.ForwardRefExoticComponent<
       500,
     );
 
-    useImperativeHandle(ref, () => ({
+    React.useImperativeHandle(ref, () => ({
       refresh: () => mutate(),
     }));
 
@@ -259,7 +259,7 @@ function Row(props: RowProps) {
     messages
   } = props;
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = React.useState(false);
 
   const clickable = expandable || !!onClickRow;
   const clickRow = () => {
