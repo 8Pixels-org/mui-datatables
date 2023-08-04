@@ -1,11 +1,11 @@
 {
   "name": "@8pixels/mui-datatables",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "homepage": "./",
   "private": false,
   "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build-rollup": "rollup -c --bundleConfigAsCjs",
@@ -22,9 +22,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/8Pixels-org/mui-datatables.git"
-  },
-  "publishConfig": {
-    "@8pixels:registry": "https://npm.pkg.github.com"
   },
   "keywords": [],
   "author": "Niek Poorthuis",
