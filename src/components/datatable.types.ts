@@ -39,7 +39,7 @@ export interface FetchDataOptions {
 }
 
 export interface TableColumn {
-  field: string;
+  field?: string;
   label: string | React.ReactNode;
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   disablePadding?: boolean;

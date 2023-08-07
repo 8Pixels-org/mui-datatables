@@ -34,7 +34,7 @@ export function DataTableHeader(props: DataTableHeaderProps) {
                 size={column.disablePadding ? 'small' : 'medium'}
                 sortDirection={sortField === column.field ? sortDir : 'desc'}
               >
-                {!canSort ? (
+                {!canSort || !column.field ? (
                   <Typography fontWeight="bold" variant="caption">
                     {column.label}
                   </Typography>
@@ -46,7 +46,7 @@ export function DataTableHeader(props: DataTableHeaderProps) {
                     active={sortField === column.field}
                     direction={sortField === column.field ? sortDir : 'desc'}
                     onClick={() =>
-                      onSort(column.field, sortDir === 'asc' ? 'desc' : 'asc')
+                      onSort(column.field || '', sortDir === 'asc' ? 'desc' : 'asc')
                     }
                   >
                     <Typography fontWeight="bold" variant="caption">

@@ -322,7 +322,7 @@ function Row(props: RowProps) {
                     size={dense ? 'small' : 'medium'}
                     align={column?.align || 'left'}
                   >
-                    {column?.customBodyRender(rowKey, row, row[column.field])}
+                    {column?.customBodyRender(rowKey, row, column.field ? row[column.field] : undefined)}
                   </TableCell>
                 );
               } else {
@@ -332,7 +332,7 @@ function Row(props: RowProps) {
                     size={dense ? 'small' : 'medium'}
                     align={column?.align || 'left'}
                   >
-                    {row[column.field]}
+                    {column.field ? row[column.field] : ''}
                   </TableCell>
                 );
               }
