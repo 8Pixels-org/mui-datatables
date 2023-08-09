@@ -96,30 +96,21 @@ export const DataTable: React.ForwardRefExoticComponent<
       field: fetchDataOptions?.sort?.field || 'created_at',
     });
     const [totalRows, setTotalRows] = React.useState<number>(0);
+    const [fetchOptions, setFetchOptions] = React.useState<FetchDataOptions>({
+      rows_per_page: rowsPerPage,
+      page: page,
+      filters: currentView?.filters || [],
+      sort: sort,
+      search: search,
+      ...defaultFetchDataOptions
+    })
 
-    // const key = useMemo(() => {
-    //   return `${dataUrl}?page=${page}&rows_per_page=${rowsPerPage}&sort_field=${
-    //     sort.field
-    //   }&sort_dir=${sort.dir}&view=${currentView?.label || "all"}`;
-    // }, [page, rowsPerPage, sort, currentView]);
-    const key = dataUrl;
-
-    const filters = currentView?.filters || [];
-
-    const {data, error, isLoading, isValidating, mutate} = useSWR(key, () =>
-      onFetchData({
-        sort: {
-          field: sort.field,
-          dir: sort.dir,
-        },
-        rows_per_page: rowsPerPage,
-        page: page,
-        filters: currentView?.filters || [],
-        search: search,
-      }).then((res) => {
-        setTotalRows(res.total);
-        return res.rows;
-      }),
+    const {data, error, isLoading, isValidating, mutate} = useSWR(
+      [fetchOptions], () =>
+        onFetchData(fetchOptions).then((res) => {
+          setTotalRows(res.total);
+          return res.rows;
+        }),
     );
 
     const onSort = (field: string, dir: 'desc' | 'asc') => {
@@ -142,7 +133,14 @@ export const DataTable: React.ForwardRefExoticComponent<
 
     useDebounceEffect(
       () => {
-        mutate();
+        setFetchOptions({
+          ...fetchOptions,
+          sort: sort,
+          rows_per_page: rowsPerPage,
+          page: page,
+          search: search,
+          filters: currentView?.filters || []
+        })
       },
       [sort, rowsPerPage, page, search, currentView],
       500,
@@ -170,13 +168,7 @@ export const DataTable: React.ForwardRefExoticComponent<
             onSearchChange={onSearchChange}
             search={search}
             disableSearch={disableSearch}
-            customSubHeaderComponent={customSubHeaderComponent ? () => customSubHeaderComponent({
-              page,
-              sort,
-              filters,
-              search,
-              rows_per_page: rowsPerPage
-            }, currentView) : () => <></>}
+            customSubHeaderComponent={customSubHeaderComponent ? () => customSubHeaderComponent(fetchOptions, currentView) : () => <></>}
           />
           <Table aria-labelledby="table title" aria-label="data table">
             <DataTableHeader
