@@ -106,7 +106,7 @@ export const DataTable: React.ForwardRefExoticComponent<
     })
 
     const {data, error, isLoading, isValidating, mutate} = useSWR(
-      [fetchOptions], () =>
+      [dataUrl, fetchOptions], () =>
         onFetchData(fetchOptions).then((res) => {
           setTotalRows(res.total);
           return res.rows;
@@ -154,22 +154,22 @@ export const DataTable: React.ForwardRefExoticComponent<
     const colCount = isExpandable ? columns.length + 1 : columns.length;
     return (
       <>
+        <DataTableToolbar
+          messages={messages}
+          isLoading={isLoading}
+          onChangeView={setCurrentView}
+          currentView={currentView}
+          views={views}
+          sortFields={sortFields}
+          sortField={sort.field}
+          sortDir={sort.dir}
+          onSortChange={onSort}
+          onSearchChange={onSearchChange}
+          search={search}
+          disableSearch={disableSearch}
+          customSubHeaderComponent={customSubHeaderComponent ? () => customSubHeaderComponent(fetchOptions, currentView) : () => <></>}
+        />
         <TableContainer>
-          <DataTableToolbar
-            messages={messages}
-            isLoading={isLoading}
-            onChangeView={setCurrentView}
-            currentView={currentView}
-            views={views}
-            sortFields={sortFields}
-            sortField={sort.field}
-            sortDir={sort.dir}
-            onSortChange={onSort}
-            onSearchChange={onSearchChange}
-            search={search}
-            disableSearch={disableSearch}
-            customSubHeaderComponent={customSubHeaderComponent ? () => customSubHeaderComponent(fetchOptions, currentView) : () => <></>}
-          />
           <Table aria-labelledby="table title" aria-label="data table">
             <DataTableHeader
               isExpandable={isExpandable}
