@@ -27,8 +27,9 @@ export default defineConfig(configEnv => ({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: '8pixels',
-      formats: ['es', 'umd'],
-      fileName: (format) => `index.${format}.js`,
+      formats: ['es'],
+      // formats: ['es', 'umd'],
+      fileName: (format) => `index.js`,
     },
     rollupOptions: {
       external: Object.keys(packageJson.peerDependencies).map(k => k),
