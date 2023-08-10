@@ -8,11 +8,13 @@ import packageJson from "./package.json";
 
 const {EsLinter, linterPlugin} = EsLint
 
+console.log("packageJson.peerDependencies", packageJson.peerDependencies)
 
 // https://vitejs.dev/config/
 export default defineConfig(configEnv => ({
   plugins: [
     react(),
+
     tsConfigPaths(),
     linterPlugin({
       include: ['./src}/**/*.{ts,tsx}'],
@@ -40,6 +42,8 @@ export default defineConfig(configEnv => ({
           'react-dom': 'ReactDOM',
           'styled-components': 'styled',
           '@emotion/styled': 'styled',
+          '@mui/icons-material': '@mui/icons-material',
+          '@mui/material': '@mui/material',
         },
       },
     },

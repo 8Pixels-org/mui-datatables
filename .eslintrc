@@ -31,7 +31,16 @@
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
     "react/jsx-indent-props": ["error", 2],
     "react/jsx-props-no-spreading": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "@mui/*/*/*"
+        ]
+      }
+    ]
+  }
   },
   "settings": {
     "import/resolver": {
