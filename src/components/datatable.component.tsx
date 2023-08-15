@@ -79,7 +79,8 @@ export const DataTable: React.ForwardRefExoticComponent<
       expandable,
       ExpandComponent,
       messages: customMessages,
-      customSubHeaderComponent
+      customSubHeaderComponent,
+      NoDataComponent
     } = props;
     const messages: DataTableMessages = typeof customMessages != 'undefined' ? deepmerge(defaultMessages, customMessages) as DataTableMessages : defaultMessages;
     const [currentView, setCurrentView] = React.useState<TableView | undefined>();
@@ -198,7 +199,7 @@ export const DataTable: React.ForwardRefExoticComponent<
                     colSpan={colCount}
                     align="center"
                   >
-                    {messages.noDataAvailable}
+                    {!!NoDataComponent ? NoDataComponent(fetchOptions, messages.noDataAvailable) : messages.noDataAvailable}
                   </TableCell>
                 </TableRow>
               ) : (

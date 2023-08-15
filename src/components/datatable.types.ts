@@ -83,12 +83,18 @@ export interface DataTableProps<T> {
    * The component to render when the row is expanded
    * @param rowIndex
    * @param row
-   * @constructor
    */
   ExpandComponent?: (
     rowIndex: number,
     row: Record<any, any>,
   ) => React.ReactNode;
+
+  /**
+   * The component to render when no data is available
+   * @param fetchDataOptions The options for fetching data
+   * @param message The default message
+   */
+  NoDataComponent?: (fetchDataOptions: FetchDataOptions, message: string) => React.ReactNode;
   /**
    * Messages can be overwritten
    */
@@ -151,26 +157,26 @@ export interface DataTableHeaderProps {
 }
 
 export interface DataTableMessages {
-  toolbar: {
-    search: {
+  toolbar: Partial<{
+    search: Partial<{
       placeholder: string;
       cancel: string;
-    };
-    views: {
+    }>;
+    views: Partial<{
       defaultViewLabel: string;
-    },
-    sort: {
+    }>,
+    sort: Partial<{
       menuHeader: string;
       sortAsc: string;
       sortDesc: string;
-    }
-  };
+    }>
+  }>;
   noDataAvailable: string;
   rowsPerPage: string;
   displayRowsPerPage: ({from, to, count, page}: { from: number, to: number, count: number, page: number }) => string;
-  row: {
+  row: Partial<{
     expandMore: string;
     expandLess: string;
     select: string;
-  }
+  }>
 }

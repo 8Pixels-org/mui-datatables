@@ -71,7 +71,7 @@ export function DataTableToolbar(props: DataTableToolbarProps) {
             color="primary"
             onClick={() => setSearching(false)}
           >
-            {messages.toolbar.search.cancel}
+            {messages.toolbar?.search?.cancel || ''}
           </Button>
         ) : (
           <>
@@ -124,7 +124,7 @@ function Search(props: SearchProps) {
       onChange={(e) => setSearch(e.target.value)}
       autoFocus
       fullWidth
-      placeholder={messages.toolbar.search.placeholder}
+      placeholder={messages.toolbar?.search?.placeholder || ''}
       InputProps={{
         endAdornment: (
           <InputAdornment
@@ -163,7 +163,7 @@ function Views(props: ViewsProps) {
         variant="scrollable"
         scrollButtons="auto"
       >
-        <Tab label={messages.toolbar.views.defaultViewLabel} value={0} onClick={() => onClick()}/>
+        <Tab label={messages.toolbar?.views?.defaultViewLabel || ''} value={0} onClick={() => onClick()}/>
         {views?.map((view, key) => (
           <Tab
             key={key}
@@ -221,7 +221,7 @@ function Sort(props: SortProps) {
       >
         <Box sx={{px: 1}}>
           <Typography>
-            {messages.toolbar.sort.menuHeader}
+            {messages.toolbar?.sort?.menuHeader || ''}
           </Typography>
         </Box>
         {sortFields.map((field, key) => {
@@ -247,7 +247,7 @@ function Sort(props: SortProps) {
           <ListItemIcon>
             <ArrowUpwardIcon/>
           </ListItemIcon>
-          {messages.toolbar.sort.sortAsc}
+          {messages.toolbar?.sort?.sortAsc || ''}
         </MenuItem>
         <MenuItem
           selected={sortDir == "desc"}
@@ -256,7 +256,7 @@ function Sort(props: SortProps) {
           <ListItemIcon>
             <ArrowDownwardIcon/>
           </ListItemIcon>
-          {messages.toolbar.sort.sortDesc}
+          {messages.toolbar?.sort?.sortDesc || ''}
         </MenuItem>
       </Menu>
     </div>
