@@ -1,6 +1,6 @@
 {
   "name": "@8pixels/mui-datatables",
-  "version": "2.2.12",
+  "version": "2.2.13",
   "homepage": "./",
   "private": false,
   "type": "module",
@@ -56,9 +56,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
-    "@mui/lab": "^5.0.0-alpha.138",
     "@mui/material": "^5.14.3",
-    "@mui/x-date-pickers": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "swr": "^2.2.0"
