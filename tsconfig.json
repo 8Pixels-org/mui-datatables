@@ -7,11 +7,11 @@
     "sourceMap": true,
     "incremental": false,
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
     ],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
@@ -26,11 +26,12 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src/**/*"
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
   ],
   "exclude": [
-    "dist",
-    "node_modules",
+    "**/dist",
+    "**/node_modules",
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx"
   ]

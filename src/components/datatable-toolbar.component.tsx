@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
@@ -18,8 +19,6 @@ import SortIcon from "@mui/icons-material/Sort";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-
-import React from "react";
 import {useDebounceEffect} from "../hooks/useDebounceEffect";
 import {DataTableMessages, DataTableToolbarProps, SortField, TableView} from "./datatable.types";
 

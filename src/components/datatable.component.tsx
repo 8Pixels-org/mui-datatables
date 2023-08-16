@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
@@ -12,12 +12,12 @@ import useSWR from 'swr';
 import {DataTableHeader} from './datatable-header.component';
 import {DataTableToolbar} from './datatable-toolbar.component';
 import {
-  DataTableMessages,
-  DataTableProps,
-  DataTableRefHandle,
-  FetchDataOptions,
-  RowProps,
-  TableView
+    DataTableMessages,
+    DataTableProps,
+    DataTableRefHandle,
+    FetchDataOptions,
+    RowProps,
+    TableView
 } from "./datatable.types";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
