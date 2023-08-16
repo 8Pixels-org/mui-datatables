@@ -164,7 +164,7 @@ function Views(props: ViewsProps) {
         scrollButtons="auto"
       >
         <Tab label={messages.toolbar?.views?.defaultViewLabel || ''} value={0} onClick={() => onClick()}/>
-        {views?.map((view, key) => (
+        {views?.filter(v => !v.hidden).map((view, key) => (
           <Tab
             key={key}
             value={view.label}
@@ -224,7 +224,7 @@ function Sort(props: SortProps) {
             {messages.toolbar?.sort?.menuHeader || ''}
           </Typography>
         </Box>
-        {sortFields.map((field, key) => {
+        {sortFields.filter(field => !field.hidden).map((field, key) => {
           const selected = sortField === field.field;
           return (
             <MenuItem

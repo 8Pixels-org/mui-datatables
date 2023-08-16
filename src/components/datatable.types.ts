@@ -15,6 +15,7 @@ export interface FetchDataResponse {
 export interface SortField {
   field: string;
   label: string;
+  hidden?: boolean;
 }
 
 export interface SortOption {
@@ -60,6 +61,7 @@ export interface TableColumn {
 export interface TableView {
   label: string;
   filters?: FilterOption[];
+  hidden?: boolean;
 }
 
 export type CustomSubHeaderComponent = (fetchDataOptions: FetchDataOptions, activeView?: TableView) => React.ReactNode
