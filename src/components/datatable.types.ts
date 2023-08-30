@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {TypographyProps} from "@mui/material/Typography";
 
 
 export interface FetchDataResponse {
@@ -65,8 +66,11 @@ export interface TableView {
 }
 
 export type CustomSubHeaderComponent = (fetchDataOptions: FetchDataOptions, activeView?: TableView) => React.ReactNode
+export type DataTableTitle = React.ReactNode | string;
 
 export interface DataTableProps<T> {
+  title?: DataTableTitle;
+  titleTypographyProps?: TypographyProps;
   onClickRow?: (row: T) => void;
   dataUrl: string;
   columns: TableColumn[];
@@ -115,7 +119,7 @@ export interface DataTableRefHandle {
   /**
    * Refresh the data.
    */
-  refresh: () => void;
+  refresh: () => Promise<Record<any, any> | undefined>;
 }
 
 
@@ -134,6 +138,8 @@ export interface RowProps {
 }
 
 export interface DataTableToolbarProps {
+  title?: DataTableTitle;
+  titleTypographyProps?: TypographyProps;
   sortFields?: SortField[];
   views?: TableView[];
   currentView?: TableView;

@@ -25,6 +25,8 @@ import {DataTableMessages, DataTableToolbarProps, SortField, TableView} from "./
 
 export function DataTableToolbar(props: DataTableToolbarProps) {
   const {
+    title,
+    titleTypographyProps,
     views = [],
     sortFields,
     onChangeView,
@@ -49,6 +51,10 @@ export function DataTableToolbar(props: DataTableToolbarProps) {
           <Search messages={messages} search={search} onSearchChange={onSearchChange}/>
         ) : (
           <>
+            {title && <Box sx={{flex: 1}}>
+              {typeof title == 'string' ?
+                <Typography variant="h6" {...titleTypographyProps}>{title}</Typography> : title}
+            </Box>}
             {views.length > 0 && (
               <Views
                 messages={messages}

@@ -12,12 +12,12 @@ import useSWR from 'swr';
 import {DataTableHeader} from './datatable-header.component';
 import {DataTableToolbar} from './datatable-toolbar.component';
 import {
-    DataTableMessages,
-    DataTableProps,
-    DataTableRefHandle,
-    FetchDataOptions,
-    RowProps,
-    TableView
+  DataTableMessages,
+  DataTableProps,
+  DataTableRefHandle,
+  FetchDataOptions,
+  RowProps,
+  TableView
 } from "./datatable.types";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -66,6 +66,8 @@ export const DataTable: React.ForwardRefExoticComponent<
 > =
   React.forwardRef((props: DataTableProps<any>, ref) => {
     const {
+      title,
+      titleTypographyProps,
       onClickRow,
       dataUrl,
       columns,
@@ -148,7 +150,7 @@ export const DataTable: React.ForwardRefExoticComponent<
     );
 
     React.useImperativeHandle(ref, () => ({
-      refresh: () => mutate(),
+      refresh: async () => await mutate(),
     }));
 
     const isExpandable = (expandable && !!ExpandComponent) || false;
@@ -156,6 +158,8 @@ export const DataTable: React.ForwardRefExoticComponent<
     return (
       <>
         <DataTableToolbar
+          title={title}
+          titleTypographyProps={titleTypographyProps}
           messages={messages}
           isLoading={isLoading}
           onChangeView={setCurrentView}
