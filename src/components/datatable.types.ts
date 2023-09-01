@@ -110,6 +110,13 @@ export interface DataTableProps<T> {
    * @param view
    */
   customSubHeaderComponent?: CustomSubHeaderComponent;
+
+  /**
+   * Triggers when a view is selected. Does not trigger if the selected view is selected again.
+   * undefined means the 'all' view is selected
+   * @param view
+   */
+  onChangeView?: (view?: TableView) => void;
 }
 
 /**

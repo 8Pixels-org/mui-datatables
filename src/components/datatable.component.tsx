@@ -82,7 +82,8 @@ export const DataTable: React.ForwardRefExoticComponent<
       ExpandComponent,
       messages: customMessages,
       customSubHeaderComponent,
-      NoDataComponent
+      NoDataComponent,
+      onChangeView: customOnChangeView
     } = props;
     const messages: DataTableMessages = typeof customMessages != 'undefined' ? deepmerge(defaultMessages, customMessages) as DataTableMessages : defaultMessages;
     const [currentView, setCurrentView] = React.useState<TableView | undefined>();
@@ -134,6 +135,14 @@ export const DataTable: React.ForwardRefExoticComponent<
       setSearch(search);
     };
 
+    const onChangeView = (view?: TableView) => {
+      setCurrentView(view);
+
+      if (customOnChangeView) {
+        customOnChangeView(view)
+      }
+    }
+
     useDebounceEffect(
       () => {
         setFetchOptions({
@@ -162,7 +171,7 @@ export const DataTable: React.ForwardRefExoticComponent<
           titleTypographyProps={titleTypographyProps}
           messages={messages}
           isLoading={isLoading}
-          onChangeView={setCurrentView}
+          onChangeView={onChangeView}
           currentView={currentView}
           views={views}
           sortFields={sortFields}
